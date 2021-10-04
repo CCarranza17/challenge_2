@@ -129,6 +129,21 @@ def run():
     # Save qualifying loans
     save_qualifying_loans(qualifying_loans)
 
+def save_csv(csvpath, data, header=None):
+    """Saves the CSV file from path provided.
+
+    Args:
+        csvpath (Path): The CSV file path.
+        data (list of lists): A list of the rows of data for the CSV file.
+        header (list): An optional header for the CSV.
+
+    """
+    with open(csvpath, "w", newline="") as csvfile:
+        csvwriter = csv.writer(csvfile, delimiter=',')
+        if header:
+            csvwriter.writerow(header)
+        csvwriter.writerows(data)
+
 
 if __name__ == "__main__":
     fire.Fire(run)
