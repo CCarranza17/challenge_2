@@ -9,6 +9,7 @@ Example:
 import sys
 import fire
 import questionary
+import csv
 from pathlib import Path
 
 from qualifier.utils.fileio import load_csv
@@ -111,7 +112,18 @@ def save_qualifying_loans(qualifying_loans):
     """
     # @TODO: Complete the usability dialog for savings the CSV Files.
     # YOUR CODE HERE!
+output_path = Path("save_qualifying_loans.csv")
 
+csvpath = Path("save_qualifying_loans.csv")
+with open(csvpath, "w") as csvfile:
+    # Create a csvwriter
+    csvwriter = csv.writer(csvfile, delimiter=",")
+
+
+    # Write the values of each dictionary inside of `save_qualifying_loans`
+    # as a row in the CSV file.
+    for item in save_qualifying_loans:
+        csvwriter.writerow(item.values())
 
 def run():
     """The main function for running the script."""
